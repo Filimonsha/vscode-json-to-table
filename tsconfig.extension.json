@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2017",
+        "outDir": "build",
+        "lib": [
+			"ES2017",
+			"dom"
+        ],
+        "sourceMap": true,
+        "rootDir": ".",
+        "strict": true
+	},
+	"include": [
+		"ext-src"
+	],
+    "exclude": [
+        "node_modules",
+        ".vscode-test"
+    ]
+}

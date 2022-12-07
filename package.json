@@ -1,0 +1,59 @@
+{
+  "name": "vscode-json-to-table",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.23.0"
+  },
+  "publisher": "Filimonsha",
+  "displayName": "JSON to table",
+  "categories": ["Visualization","Other"],
+  "galleryBanner": {
+    "color": "#0000FF",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onCommand:translate-json-to-table.start"
+  ],
+  "main": "./build/ext-src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "translate-json-to-table.start",
+        "title": "Transfom JSON to table",
+        "category": "React"
+      }
+    ]
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-json-to-table": "^0.1.7",
+    "terser": "^5.15.0",
+    "vscode": "^1.1.17",
+    "yarn": "^1.22.19"
+  },
+  "resolutions": {},
+  "scripts": {
+    "vscode:prepublish": "node ./scripts/build-non-split.js && tsc -p tsconfig.extension.json",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "start": "react-scripts start",
+    "build": "node ./scripts/build-non-split.js && tsc -p tsconfig.extension.json",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.1.2",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "react-scripts": "^5.0.1",
+    "rewire": "^6.0.0",
+    "typescript": "^3.3.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

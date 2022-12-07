@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.json-to-table{
+  border: 3px solid #406e00;
+  border-radius: 8px;
+}
+.json-to-table tr:nth-child(even){
+  background:#daf4c6;
+}
+.json-to-table tr:not(:nth-child(even)){
+  background:#d6c1bd;
+}
