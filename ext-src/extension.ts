@@ -8,13 +8,9 @@ export function activate(context: vscode.ExtensionContext) {
 	}));
 }
 
-/**
- * Manages react webview panels
- */
+
 class ReactPanel {
-	/**
-	 * Track the currently panel. Only allow a single panel to exist at a time.
-	 */
+
 	public static currentPanel: ReactPanel | undefined;
 
 	private static readonly viewType = 'react';
@@ -26,8 +22,7 @@ class ReactPanel {
 	public static createOrShow(extensionPath: string) {
 		const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
-		// If we already have a panel, show it.
-		// Otherwise, create a new panel.
+
 		if (ReactPanel.currentPanel) {
 			ReactPanel.currentPanel._panel.reveal(column);
 		} else {
@@ -38,22 +33,17 @@ class ReactPanel {
 	private constructor(extensionPath: string, column: vscode.ViewColumn) {
 		this._extensionPath = extensionPath;
 
-		// Create and show a new webview panel
 		this._panel = vscode.window.createWebviewPanel(ReactPanel.viewType, "React", column, {
-			// Enable javascript in the webview
 			enableScripts: true,
 
-			// And restric the webview to only loading content from our extension's `media` directory.
 			localResourceRoots: [
 				vscode.Uri.file(path.join(this._extensionPath, 'build'))
 			]
 		});
 		
-		// Set the webview's initial html content 
 		this._panel.webview.html = this._getHtmlForWebview();
 
-		// Listen for when the panel is disposed
-		// This happens when the user closes the panel or when the panel is closed programatically
+
 		this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
 		// Handle messages from the webview
@@ -67,15 +57,13 @@ class ReactPanel {
 	}
 
 	public doRefactor() {
-		// Send a message to the webview webview.
-		// You can send any JSON serializable data.
+
 		this._panel.webview.postMessage({ command: 'refactor' });
 	}
 
 	public dispose() {
 		ReactPanel.currentPanel = undefined;
 
-		// Clean up our resources
 		this._panel.dispose();
 
 		while (this._disposables.length) {
@@ -96,7 +84,7 @@ class ReactPanel {
 		const stylePathOnDisk = vscode.Uri.file(path.join(this._extensionPath, 'build', mainStyle));
 		const styleUri = stylePathOnDisk.with({ scheme: 'vscode-resource' });
 
-		let activeTextEditor = vscode.window.activeTextEditor;
+		const activeTextEditor = vscode.window.activeTextEditor;
 		let outputFileData:string | null = null
 
 		if (activeTextEditor) {
