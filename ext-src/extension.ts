@@ -101,7 +101,7 @@ class ReactPanel {
 
 		if (activeTextEditor) {
 			try {
-				outputFileData = JSON.stringify(JSON.parse(activeTextEditor.document.getText())) 
+				outputFileData = activeTextEditor.document.getText() 
 			} catch (e) {
 				outputFileData = null
 				vscode.window.showErrorMessage(e.toString());
